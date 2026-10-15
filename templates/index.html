@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SpamGuard AI | Email Security</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">✉</div>
+            <span>SpamGuard <strong>AI</strong></span>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Email Security
+        </div>
+    </header>
+
+    <main class="dashboard">
+
+        <section class="welcome">
+            <p class="eyebrow">AI-POWERED EMAIL PROTECTION</p>
+
+            <h1>Keep your inbox <span>safe.</span></h1>
+
+            <p class="description">
+                Analyze suspicious messages and identify potential spam
+                using machine learning.
+            </p>
+        </section>
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <div class="stat-icon blue">✉</div>
+
+                <div>
+                    <p>Emails Analyzed</p>
+                    <h2 id="totalEmails">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon red">⚠</div>
+
+                <div>
+                    <p>Spam Detected</p>
+                    <h2 id="spamCount">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">✓</div>
+
+                <div>
+                    <p>Normal Messages</p>
+                    <h2 id="normalCount">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Main analysis area -->
+
+        <section class="workspace">
+
+            <div class="panel input-panel">
+
+                <div class="panel-heading">
+                    <div class="heading-icon">✉</div>
+
+                    <div>
+                        <h2>Email Analysis</h2>
+                        <p>Enter the message you want to inspect.</p>
+                    </div>
+                </div>
+
+                <form id="emailForm">
+
+                    <label for="subject">
+                        Subject <span>(Optional)</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="subject"
+                        placeholder="Enter email subject..."
+                    >
+
+                    <label for="sender">
+                        Sender <span>(Optional)</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="sender"
+                        placeholder="sender@example.com"
+                    >
+
+                    <label for="email">
+                        Email Content <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="email"
+                        placeholder="Paste the email message here..."
+                        required
+                    ></textarea>
+
+                    <div class="button-row">
+
+                        <button type="submit" id="analyzeButton">
+                            <span>⌕</span>
+                            Analyze Email
+                        </button>
+
+                        <button type="button" id="clearButton">
+                            Clear
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <p class="privacy-note">
+                    🔒 Your message is analyzed by this local demo.
+                </p>
+
+            </div>
+
+            <!-- Results panel -->
+
+            <div class="panel result-panel" id="resultPanel">
+
+                <div id="emptyState" class="empty-state">
+
+                    <div class="empty-icon">✉</div>
+
+                    <h3>Ready to analyze</h3>
+
+                    <p>
+                        Enter an email message and click
+                        "Analyze Email" to see the result.
+                    </p>
+
+                </div>
+
+                <div id="loadingState" class="loading-state" hidden>
+
+                    <div class="scanner-icon">
+                        <div class="scanner-ring"></div>
+                        <span>✉</span>
+                    </div>
+
+                    <h3>Scanning your email...</h3>
+
+                    <p>Checking message patterns for potential spam.</p>
+
+                    <div class="progress-track">
+                        <div class="progress-bar"></div>
+                    </div>
+
+                </div>
+
+                <div id="resultState" class="result-state" hidden>
+
+                    <div id="resultIcon" class="result-icon">✓</div>
+
+                    <p class="result-label">ANALYSIS COMPLETE</p>
+
+                    <h2 id="resultTitle">Analysis Result</h2>
+
+                    <p id="resultMessage"></p>
+
+                    <div class="result-details">
+                        <span>Subject</span>
+                        <strong id="resultSubject">Not provided</strong>
+                    </div>
+
+                    <div class="result-details">
+                        <span>Sender</span>
+                        <strong id="resultSender">Not provided</strong>
+                    </div>
+
+                    <button type="button" id="analyzeAgainButton">
+                        Analyze Another Email
+                    </button>
+
+                    <p class="disclaimer">
+                        This is a demonstration model. Results may be incorrect.
+                    </p>
+
+                </div>
+
+                <div id="errorState" class="error-state" hidden>
+                    <h3>Unable to analyze</h3>
+                    <p id="errorMessage"></p>
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+            <p>SpamGuard AI · Built with Python, Flask & Machine Learning</p>
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
